@@ -35,8 +35,8 @@ void Board::addFood() {
         addFood();
     }
     else {
-        food.foodPositionX = rand() % 785 + 1;
-        food.foodPositionY = rand() % 585 + 1;
+        food.foodPositionX = rand() % 770 + 10;
+        food.foodPositionY = rand() % 570 + 10;
 
         if(Mode == EASY) {
             food.foodType = NORM;

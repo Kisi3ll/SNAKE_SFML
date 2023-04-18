@@ -25,7 +25,7 @@ protected:
     Direction lastHeadRotate;
     std::vector<int> positionX;
     std::vector<int> positionY;
-    sf::Texture headTexture;
+    //sf::Texture headTexture;
     sf::RectangleShape snake;
 
 public:

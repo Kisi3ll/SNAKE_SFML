@@ -9,7 +9,7 @@ class SFMLController : public Menu {
     bool isReset;
 
 public:
-    explicit SFMLController(GameMode mode);
+    SFMLController(GameMode mode);
     void drawMenu(sf::RenderWindow & win);
     void drawGameplay(sf::RenderWindow & win);
     void handleEvent(sf::Event & event);
@@ -17,6 +17,5 @@ public:
     void reset();
     static int positionY(int y);
 };
-
 
 #endif //SNAKE_SFML_SFMLCONTROLLER_H

@@ -21,12 +21,11 @@ protected:
     sf::Sprite snakeSprite;
 
 public:
-    explicit Menu(GameMode & mode);
+    Menu(GameMode & mode);
     static std::string getStringMode(GameMode & mode);
     void startScreen();
     void settings();
     void setState(int & state);
 };
-
 
 #endif //SNAKE_SFML_MENU_H

@@ -14,7 +14,7 @@ Snake::Snake() {
     snakePoss[1] = 300;
     snake = sf::RectangleShape(sf::Vector2f(20, 20));
     snake.setPosition(280, 300);
-    snake.setFillColor(sf::Color::Yellow);//TODO color
+    snake.setFillColor(sf::Color::Yellow);//TODO less color when growing
 }
 
 void Snake::headRotateFunc(int &key) {

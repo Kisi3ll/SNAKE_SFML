@@ -47,7 +47,7 @@ protected:
 public:
     Board();
     void addFood();
-    void removeFood(int position = 1);
+    void removeFood(int position = 0);
     void drawFood(sf::RenderWindow & win);
     int countOfFood();
     virtual void setState(GameState state);

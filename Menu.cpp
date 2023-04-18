@@ -42,11 +42,11 @@ Menu::Menu(GameMode & mode) {
 
 std::string Menu::getStringMode(GameMode & mode) {
     switch (mode) {
-        case 0:
+        case EASY:
             return "EASY";
-        case 1:
+        case NORMAL:
             return "NORMAL";
-        case 2:
+        case HARD:
             return "HARD";
     }
 }
@@ -111,19 +111,19 @@ void Menu::settings() {
 void Menu::setState(int &state) {
     if(State == SETTINGS) {
         Mode = static_cast<GameMode>(state);//static_cast() converting int to enum
-        State = LastState;
+        //State = LastState;
         if(Mode == EASY){
-            speed = 4;
+            speed = 3;
             snake.setFillColor(sf::Color::Yellow);
             borderColor = sf::Color::Yellow;
         }
         if(Mode == NORMAL){
-            speed = 5;
+            speed = 4;
             snake.setFillColor(sf::Color::Magenta);
             borderColor = sf::Color::Magenta;
         }
         if(Mode == HARD){
-            speed = 6;
+            speed = 5;
             snake.setFillColor(sf::Color::Red);
             borderColor = sf::Color::Red;
         }

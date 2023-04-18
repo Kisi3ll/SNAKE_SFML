@@ -16,7 +16,6 @@ int main() {
         while (win.pollEvent(event)) {
             if(event.type == sf::Event::Closed) {
                 win.close();
-                continue;
             }
             map.handleEvent(event);
         }

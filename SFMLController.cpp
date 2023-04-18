@@ -59,7 +59,7 @@ void SFMLController::drawMenu(sf::RenderWindow &win) {
 }
 
 void SFMLController::drawGameplay(sf::RenderWindow &win) {
-    for(auto &rect : line) {
+    for(auto &rect : line) { //same situation as upper
         rect.setFillColor(borderColor);
         win.draw(rect);
     }
@@ -79,7 +79,7 @@ void SFMLController::handleEvent(sf::Event &event) {
         int tmp = positionY(event.mouseButton.y);
         int x = event.mouseButton.x;
         int y = event.mouseButton.y;
-        if(x < 100 && y < 43){
+        if(x < 100 && y < 45){
             State = START_SCREEN;
             if(!isReset) {
                 reset();
@@ -93,12 +93,12 @@ void SFMLController::handleEvent(sf::Event &event) {
     if(event.type == sf::Event::KeyPressed && State == RUNNING){
         int key = event.key.code;
         headRotateFunc(key);
-        //headRotateFunc(reinterpret_cast<int &>(event.key.code));//TODO its works correctly?
+        //headRotateFunc(static_cast<int &>(event.key.code));//TODO its works correctly?
     }
 }
 
-int SFMLController::positionY(int y) {
-    y -= 310;
+int SFMLController::positionY(int y) {//dont work full correnctly
+    y -= 300; //middle of the screen
     for(int i=0;i<3;++i){
         if(y<20 && y>0){
             return i;
