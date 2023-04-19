@@ -93,10 +93,10 @@ int Board::countOfFood() {
         return 2;
     }
     if(Mode == NORMAL) {
-        return 6;
+        return 4;
     }
     if(Mode == HARD) {
-        return 10;
+        return 6;
     }
     return 0;
 }

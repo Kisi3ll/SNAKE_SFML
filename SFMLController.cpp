@@ -32,7 +32,7 @@ void SFMLController::drawMenu(sf::RenderWindow &win) {
         if(State != FINISHED){
             drawGameplay(win);
         }
-        else {
+        else {//end game text
             textScore.setString("Your score: ");
             textScore.setFillColor(sf::Color::Black);
             textScore.setPosition(290, 300);
