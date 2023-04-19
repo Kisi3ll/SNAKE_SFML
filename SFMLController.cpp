@@ -145,13 +145,13 @@ int SFMLController::timeToFood() {
 #elif __linux__
 int SFMLController::timeToFood() {
     if(Mode == EASY){
-        return 800000;
-    }
-    else if(Mode == NORMAL) {
         return 400000;
     }
-    else if(Mode == HARD) {
+    else if(Mode == NORMAL) {
         return 200000;
+    }
+    else if(Mode == HARD) {
+        return 100000;
     }
     return -1;
 }
