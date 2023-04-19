@@ -111,7 +111,7 @@ void Menu::settings() {
 void Menu::setState(int &state) {
     if(State == SETTINGS) {
         Mode = static_cast<GameMode>(state);//static_cast() converting int to enum
-        //State = LastState;
+        State = LastState;
         if(Mode == EASY){
             speed = 3;
             snake.setFillColor(sf::Color::Yellow);
