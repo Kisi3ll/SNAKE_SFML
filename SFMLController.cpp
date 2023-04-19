@@ -129,7 +129,7 @@ void SFMLController::reset() {
 
     isReset = true;
 }
-
+#ifdef __WIN32__
 int SFMLController::timeToFood() {
     if(Mode == EASY){
         return 8000;
@@ -142,3 +142,17 @@ int SFMLController::timeToFood() {
     }
     return -1;
 }
+#elif __linux__
+int SFMLController::timeToFood() {
+    if(Mode == EASY){
+        return 800000;
+    }
+    else if(Mode == NORMAL) {
+        return 400000;
+    }
+    else if(Mode == HARD) {
+        return 200000;
+    }
+    return -1;
+}
+#endif
