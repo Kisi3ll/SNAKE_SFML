@@ -13,11 +13,18 @@ enum Direction {
     RIGHT
 };
 
+//struct snakeBody {
+//    int xPos;
+//    int yPos;
+//    Direction dir;
+//};
+
+
 class Snake : public Board {
 protected:
     int speed;
     int pressedKey;
-    int snakePoss[2];
+    std::vector<std::pair <int, int>> snakePoss;
     int length;
     int score;
 
@@ -25,7 +32,7 @@ protected:
     Direction lastHeadRotate;
     std::vector<int> positionX;
     std::vector<int> positionY;
-    //sf::Texture headTexture;
+    std::vector<sf::Vector2i> poss;
     sf::RectangleShape snake;
 
 public:

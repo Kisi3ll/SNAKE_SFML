@@ -116,8 +116,8 @@ void SFMLController::reset() {
     pressedKey = 72;
     headRotate = RIGHT;//TODO static_cast<Direction>(rand() % 4);
 
-    Snake::snakePoss[0] = 300;
-    Snake::snakePoss[1] = 300;
+    Snake::snakePoss[0].first = 300;
+    Snake::snakePoss[0].second = 300;
     Snake::positionX.clear();
     Snake::positionY.clear();
     Board::removeFood();
@@ -132,13 +132,13 @@ void SFMLController::reset() {
 #ifdef __WIN32__
 int SFMLController::timeToFood() {
     if(Mode == EASY){
-        return 8000;
+        return 10000;
     }
     else if(Mode == NORMAL) {
-        return 4000;
+        return 6000;
     }
     else if(Mode == HARD) {
-        return 2000;
+        return 4000;
     }
     return -1;
 }

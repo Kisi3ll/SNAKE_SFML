@@ -10,8 +10,7 @@ Snake::Snake() {
     length = 10;
     speed = 5;
 
-    snakePoss[0] = 300;
-    snakePoss[1] = 300;
+    snakePoss.push_back({300, 300});
     snake = sf::RectangleShape(sf::Vector2f(20, 20));
     snake.setPosition(280, 300);
     snake.setFillColor(sf::Color::Yellow);//TODO less color when growing
@@ -42,65 +41,65 @@ void Snake::update() {
         positionY.erase(positionY.begin());
     }
     if(headRotate == LEFT){
-        positionX.push_back(snakePoss[0]);
-        positionY.push_back(snakePoss[1]);
+        positionX.push_back(snakePoss[0].first);
+        positionY.push_back(snakePoss[0].second);
     }
     if(headRotate == RIGHT){
-        positionX.push_back(snakePoss[0]);
-        positionY.push_back(snakePoss[1]);
+        positionX.push_back(snakePoss[0].first);
+        positionY.push_back(snakePoss[0].second);
     }
     if(headRotate == UP){
-        positionX.push_back(snakePoss[0]);
-        positionY.push_back(snakePoss[1]);
+        positionX.push_back(snakePoss[0].first);
+        positionY.push_back(snakePoss[0].second);
     }
     if(headRotate == DOWN){
-        positionX.push_back(snakePoss[0]);
-        positionY.push_back(snakePoss[1]);
+        positionX.push_back(snakePoss[0].first);
+        positionY.push_back(snakePoss[0].second);
     }
     checkEdges();
 
     if(headRotate == LEFT){
-        snakePoss[0] -= speed;
+        snakePoss[0].first -= speed;
     }
     if(headRotate == RIGHT){
-        snakePoss[0] += speed;
+        snakePoss[0].first += speed;
     }
     if(headRotate == UP){
-        snakePoss[1] -= speed;
+        snakePoss[0].second -= speed;
     }
     if(headRotate == DOWN){
-        snakePoss[1] += speed;
+        snakePoss[0].second += speed;
     }
 }
 
 void Snake::checkEdges() {
-    if(snakePoss[1] > 600){
+    if(snakePoss[0].second > 600){
         if(Mode != HARD){
-            snakePoss[1] = 0;
+            snakePoss[0].second = 0;
         }
         else{
             State = FINISHED;
         }
     }
-    if(snakePoss[0] > 800){
+    if(snakePoss[0].first > 800){
         if(Mode != HARD){
-            snakePoss[0] = 0;
+            snakePoss[0].first = 0;
         }
         else{
             State = FINISHED;
         }
     }
-    if(snakePoss[1] < 0){
+    if(snakePoss[0].second < 0){
         if(Mode != HARD){
-            snakePoss[1] = 600;
+            snakePoss[0].second = 600;
         }
         else{
             State = FINISHED;
         }
     }
-    if(snakePoss[0] < 0){
+    if(snakePoss[0].first < 0){
         if(Mode != HARD){
-            snakePoss[0] = 800;
+            snakePoss[0].first = 800;
         }
         else{
             State = FINISHED;
