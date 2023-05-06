@@ -9,8 +9,9 @@ Snake::Snake() {
     headRotate = RIGHT;//TODO static_cast<Direction>(rand() % 4);
     length = 10;
     speed = 5;
-
-    snakePoss.push_back({300, 300});
+    for(int i=0;i<length;++i){
+        snakePoss.push_back({300, 300+i});
+    }
     snake = sf::RectangleShape(sf::Vector2f(20, 20));
     snake.setPosition(280, 300);
     snake.setFillColor(sf::Color::Yellow);//TODO less color when growing
@@ -36,25 +37,29 @@ void Snake::headRotateFunc(int &key) {
 }
 
 void Snake::update() {
-    if(positionX.size() > length){
-        positionX.erase(positionX.begin());
-        positionY.erase(positionY.begin());
-    }
-    if(headRotate == LEFT){
-        positionX.push_back(snakePoss[0].first);
-        positionY.push_back(snakePoss[0].second);
-    }
-    if(headRotate == RIGHT){
-        positionX.push_back(snakePoss[0].first);
-        positionY.push_back(snakePoss[0].second);
-    }
-    if(headRotate == UP){
-        positionX.push_back(snakePoss[0].first);
-        positionY.push_back(snakePoss[0].second);
-    }
-    if(headRotate == DOWN){
-        positionX.push_back(snakePoss[0].first);
-        positionY.push_back(snakePoss[0].second);
+    int x = snakePoss[0].first;
+    int y = snakePoss[0].second;
+    switch (headRotate) {
+        case UP:
+            y--;
+            snakePoss.pop_back();
+            snakePoss.insert(snakePoss.begin()+1, {x, y});
+            break;
+        case DOWN:
+            y++;
+            snakePoss.pop_back();
+            snakePoss.insert(snakePoss.begin()+1, {x, y});
+            break;
+        case LEFT:
+            x--;
+            snakePoss.pop_back();
+            snakePoss.insert(snakePoss.begin()+1, {x, y});
+            break;
+        case RIGHT:
+            x++;
+            snakePoss.pop_back();
+            snakePoss.insert(snakePoss.begin()+1, {x, y});
+            break;
     }
     checkEdges();
 
@@ -110,35 +115,35 @@ void Snake::checkEdges() {
 void Snake::drawSnake(sf::RenderWindow &win) {
     for(int i=0;i<length;i++){
         checkCollisionsFood();
-        if(positionX[i] == positionX[length] && positionY[i] == positionY[length] && length >100){
+        if(snakePoss[i].first == snakePoss[length-1].first && snakePoss[i].second == snakePoss[length-1].second && length >200){
             State = FINISHED;
         }
         else{
-            snake.setPosition(positionX[i], positionY[i]);
+            snake.setPosition(snakePoss[i].first, snakePoss[i].second);
             win.draw(snake);
         }
     }
 }
 
 void Snake::checkCollisionsFood() {
-    int vectorSize = Board::foodVector.size();
+    int vectorSize = foodVector.size();
     int maxPosX, maxPosY, minPosX, minPosY;
     for(int i=0;i<vectorSize;i++){
-       if(positionX[length] > foodVector[i].foodPositionX){
-           maxPosX = positionX[length];
-           minPosX = foodVector[i].foodPositionX;
-       }
-       else{
-           minPosX = positionX[length];
-           maxPosX = foodVector[i].foodPositionX;
-       }
+        if(snakePoss[0].first > foodVector[i].foodPositionX){
+            maxPosX = snakePoss[0].first;
+            minPosX = foodVector[i].foodPositionX;
+        }
+        else{
+            minPosX = snakePoss[0].first;
+            maxPosX = foodVector[i].foodPositionX;
+        }
 
-       if(positionY[length] > foodVector[i].foodPositionY){
-           maxPosY = positionY[length];
+       if(snakePoss[0].second > foodVector[i].foodPositionY){
+           maxPosY = snakePoss[0].second;
            minPosY = foodVector[i].foodPositionY;
        }
        else{
-           minPosY = positionY[length];
+           minPosY = snakePoss[0].second;
            maxPosY = foodVector[i].foodPositionY;
        }
 
@@ -150,11 +155,22 @@ void Snake::checkCollisionsFood() {
            if(foodVector[i].foodType == SPECIAL){
                if(health > 0){
                    health -= 1;
-                   length -= 1;
                }
                else{
                    setState(FINISHED);
                }
+           }
+           if(headRotate == UP){
+               snakePoss.push_back({snakePoss[length-1].first, snakePoss[length-1].second+5});
+           }
+           if(headRotate == DOWN){
+               snakePoss.push_back({snakePoss[length-1].first, snakePoss[length-1].second-5});
+           }
+           if(headRotate == LEFT){
+               snakePoss.push_back({snakePoss[length-1].first+5, snakePoss[length-1].second});
+           }
+           if(headRotate == RIGHT){
+               snakePoss.push_back({snakePoss[length-1].first-5, snakePoss[length-1].second});
            }
            addFood();
            removeFood(i);

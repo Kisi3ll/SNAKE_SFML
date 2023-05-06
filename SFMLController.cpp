@@ -118,8 +118,8 @@ void SFMLController::reset() {
 
     Snake::snakePoss[0].first = 300;
     Snake::snakePoss[0].second = 300;
-    Snake::positionX.clear();
-    Snake::positionY.clear();
+//    Snake::positionX.clear();
+//    Snake::positionY.clear();
     Board::removeFood();
 
     textScore.setString("Score: ");
