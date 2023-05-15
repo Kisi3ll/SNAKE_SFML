@@ -6,11 +6,11 @@ Menu::Menu(GameMode & mode) {
     //std::cout << "Menu created" << std::endl;
     Mode = mode;
     State = START_SCREEN;
-    if (!font.loadFromFile("../Font/Arcade.ttf")) {
+    if(!font.loadFromFile("../Font/Arcade.ttf")) {
         std::cerr<<strerror(errno)<<std::endl;
         abort();
     }
-    if (!snakeLogo.loadFromFile("../Image/snake.png")) {
+    if(!snakeLogo.loadFromFile("../Image/snake.png")) {
         std::cerr<<strerror(errno)<<std::endl;
         abort();
     }

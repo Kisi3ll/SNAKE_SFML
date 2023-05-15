@@ -42,22 +42,18 @@ void Snake::update() {
     switch (headRotate) {
         case UP:
             y--;
-            snakePoss.pop_back();
             snakePoss.insert(snakePoss.begin()+1, {x, y});
             break;
         case DOWN:
             y++;
-            snakePoss.pop_back();
             snakePoss.insert(snakePoss.begin()+1, {x, y});
             break;
         case LEFT:
             x--;
-            snakePoss.pop_back();
             snakePoss.insert(snakePoss.begin()+1, {x, y});
             break;
         case RIGHT:
             x++;
-            snakePoss.pop_back();
             snakePoss.insert(snakePoss.begin()+1, {x, y});
             break;
     }
@@ -126,9 +122,8 @@ void Snake::drawSnake(sf::RenderWindow &win) {
 }
 
 void Snake::checkCollisionsFood() {
-    int vectorSize = foodVector.size();
     int maxPosX, maxPosY, minPosX, minPosY;
-    for(int i=0;i<vectorSize;i++){
+    for(int i=0;i<foodVector.size();i++){
         if(snakePoss[0].first > foodVector[i].foodPositionX){
             maxPosX = snakePoss[0].first;
             minPosX = foodVector[i].foodPositionX;
